@@ -3,13 +3,11 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime
 
 from aiolyric import Lyric
 from aiolyric.objects.device import LyricDevice
 from aiolyric.objects.location import LyricLocation
 from aiolyric.objects.priority import LyricAccessories, LyricRoom
-
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
     BinarySensorEntity,
@@ -18,7 +16,6 @@ from homeassistant.components.binary_sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from . import LyricAccessoryEntity
@@ -29,7 +26,7 @@ from .const import DOMAIN
 class LyricBinarySensorAccessoryEntityDescriptionMixin:
     """Mixin for required keys."""
 
-    value_fn: Callable[[LyricRoom, LyricAccessories], StateType | datetime]
+    value_fn: Callable[[LyricRoom, LyricAccessories], bool]
     suitable_fn: Callable[[LyricRoom, LyricAccessories], bool]
 
 
@@ -38,6 +35,7 @@ class LyricBinarySensorAccessoryEntityDescription(
     BinarySensorEntityDescription, LyricBinarySensorAccessoryEntityDescriptionMixin
 ):
     """Class describing Honeywell Lyric room sensor entities."""
+
 
 ACCESSORY_SENSORS: list[LyricBinarySensorAccessoryEntityDescription] = [
     LyricBinarySensorAccessoryEntityDescription(
@@ -48,6 +46,7 @@ ACCESSORY_SENSORS: list[LyricBinarySensorAccessoryEntityDescription] = [
         suitable_fn=lambda _, accessory: accessory.type == "IndoorAirSensor",
     )
 ]
+
 
 async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
@@ -61,6 +60,7 @@ async def async_setup_entry(
             entities.extend(__create_accessory_entities(device, location, coordinator))
 
     async_add_entities(entities)
+
 
 def __create_accessory_entities(
     device: LyricDevice,

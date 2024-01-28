@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from datetime import timedelta
 from http import HTTPStatus
-import logging
 
 from aiohttp.client_exceptions import ClientResponseError
 from aiolyric import Lyric
@@ -12,7 +12,6 @@ from aiolyric.exceptions import LyricAuthenticationException, LyricException
 from aiolyric.objects.device import LyricDevice
 from aiolyric.objects.location import LyricLocation
 from aiolyric.objects.priority import LyricAccessories, LyricRoom
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
@@ -20,7 +19,11 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers import (
     aiohttp_client,
     config_entry_oauth2_flow,
+)
+from homeassistant.helpers import (
     config_validation as cv,
+)
+from homeassistant.helpers import (
     device_registry as dr,
 )
 from homeassistant.helpers.device_registry import DeviceInfo

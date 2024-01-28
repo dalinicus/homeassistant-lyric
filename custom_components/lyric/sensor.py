@@ -9,7 +9,6 @@ from aiolyric import Lyric
 from aiolyric.objects.device import LyricDevice
 from aiolyric.objects.location import LyricLocation
 from aiolyric.objects.priority import LyricAccessories, LyricRoom
-
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,

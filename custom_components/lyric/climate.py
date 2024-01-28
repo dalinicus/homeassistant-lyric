@@ -7,11 +7,11 @@ import logging
 from time import localtime, strftime, time
 from typing import Any
 
+import homeassistant.helpers.config_validation as cv
+import voluptuous as vol
 from aiolyric import Lyric
 from aiolyric.objects.device import LyricDevice
 from aiolyric.objects.location import LyricLocation
-import voluptuous as vol
-
 from homeassistant.components.climate import (
     ATTR_TARGET_TEMP_HIGH,
     ATTR_TARGET_TEMP_LOW,
@@ -34,7 +34,6 @@ from homeassistant.const import (
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import entity_platform
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
