@@ -47,6 +47,9 @@
       },
       "room_humidity": {
         "name": "Room humidity"
+      },
+      "room_motion": {
+        "name": "Room motion"
       }
     }
   },
