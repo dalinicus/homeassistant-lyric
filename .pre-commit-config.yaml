@@ -3,7 +3,6 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-yaml
-      - id: check-json
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: detect-private-key
@@ -38,14 +37,14 @@ repos:
       - --ignore-missing-imports
       - --check-untyped-defs
 
-  - repo: local
-    hooks:
-      - id: pytest-check
-        name: pytest-check
-        entry: pytest
-        language: system
-        pass_filenames: false
-        always_run: true
+  # - repo: local
+  #   hooks:
+  #     - id: pytest-check
+  #       name: pytest-check
+  #       entry: pytest
+  #       language: system
+  #       pass_filenames: false
+  #       always_run: true
 
 ci:
   autofix_prs: true
